@@ -1,0 +1,39 @@
+# Core
+torch>=2.1.0
+torchvision
+transformers>=4.40.0
+accelerate
+Pillow
+numpy
+pandas
+tqdm
+
+# Quantization (for running MedGemma on limited GPU)
+bitsandbytes
+peft
+sentencepiece
+protobuf
+
+# ColPali
+colpali-engine
+
+# CLIP
+open-clip-torch
+
+# Vector store
+faiss-cpu
+
+# Streamlit demo
+streamlit
+
+# Evaluation
+rouge-score
+nltk
+scikit-learn
+matplotlib
+seaborn
+
+# Utilities
+python-dotenv
+huggingface-hub
+datasets
