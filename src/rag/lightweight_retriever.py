@@ -7,17 +7,10 @@ from dotenv import load_dotenv
 load_dotenv(dotenv_path=Path(__file__).resolve().parents[2] / ".env")
 
 class LightweightRetriever:
-    """
-    CPU-friendly retriever using sentence-transformers.
-    Same interface as ColPaliIndexer.
-    Used in the demo app since ColPali requires GPU.
-    ColPali implementation is preserved in indexer.py for reference.
-    """
-
     def __init__(self):
         from sentence_transformers import SentenceTransformer
         print("Loading lightweight retriever...")
-        self.model = SentenceTransformer("all-MiniLM-L6-v2")  # tiny, fast, CPU-friendly
+        self.model = SentenceTransformer("all-MiniLM-L6-v2")  
         self.doc_embeddings = None
         self.doc_metadata = []
         print("Retriever ready.")

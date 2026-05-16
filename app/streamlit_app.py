@@ -23,18 +23,14 @@ st.title("Chest X-Ray AI System")
 st.write("DSAI 413 — Assignment 2 | Multi-Modal Report Generation & QA")
 st.divider()
 
-# Mode selection
 mode = st.radio("Select Mode:", ["Report Generation", "QA Mode"], horizontal=True)
 st.divider()
 
-# Model selection (only for report generation)
 if mode == "Report Generation":
     model_choice = st.selectbox("Select Model:", ["CLIP (Retrieval-based)", "MedGemma 4B"])
 
-# Upload image
 uploaded = st.file_uploader("Upload a chest X-ray image (PNG or JPG):", type=["png", "jpg", "jpeg"])
 
-# ── Model loaders ─────────────────────────────────────────────────────────────
 @st.cache_resource
 def load_medgemma():
     from src.report_generation.medgemma_model import MedGemmaReportGenerator
@@ -68,7 +64,6 @@ def load_rag():
     retriever.index_documents(docs)
     return RAGQAPipeline(retriever)
 
-# ── Main logic ────────────────────────────────────────────────────────────────
 if uploaded:
     os.makedirs("data/processed", exist_ok=True)
     tmp_path = "data/processed/query_image.png"
@@ -78,7 +73,6 @@ if uploaded:
     st.image(image, caption="Uploaded X-Ray", width=300)
     st.divider()
 
-    # ── Report Generation ─────────────────────────────────────────────────────
     if mode == "Report Generation":
         if st.button("Generate Report"):
             if model_choice == "CLIP (Retrieval-based)":
@@ -104,7 +98,6 @@ if uploaded:
                         st.write(c["report"][:300])
                         st.divider()
 
-    # ── QA Mode ───────────────────────────────────────────────────────────────
     else:
         question = st.text_input("Ask a question about this X-ray:",
                                  placeholder="e.g. Is there pneumonia? Are the lungs clear?")

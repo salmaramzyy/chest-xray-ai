@@ -8,11 +8,6 @@ from PIL import Image
 load_dotenv(dotenv_path=Path(__file__).resolve().parents[2] / ".env")
 
 class RAGQAPipeline:
-    """
-    RAG QA Pipeline:
-    1. ColPali retrieves relevant documents
-    2. Groq (llama-4-scout) generates grounded answer
-    """
 
     def __init__(self, indexer, medgemma=None):
         from groq import Groq

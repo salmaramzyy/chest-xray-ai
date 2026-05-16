@@ -18,8 +18,8 @@ class ColPaliIndexer:
 
         self.model = ColPali.from_pretrained(
             self.MODEL_ID,
-            torch_dtype=torch.float32,   # float32 works on CPU
-            device_map="cpu",            # force CPU
+            torch_dtype=torch.float32,  
+            device_map="cpu",        
             token=token,
         ).eval()
 
@@ -32,7 +32,7 @@ class ColPaliIndexer:
         self.doc_metadata = []
         print("ColPali loaded on CPU.")
 
-    def index_documents(self, docs: list, batch_size=1):  # batch_size=1 for CPU
+    def index_documents(self, docs: list, batch_size=1):  
         print(f"Indexing {len(docs)} documents with ColPali...")
         for i, doc in enumerate(docs):
             try:
